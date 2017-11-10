@@ -12,8 +12,8 @@ public class Wheels extends Subsystem {
 
     SpeedController right = RobotMap.wRight;
     SpeedController left = RobotMap.wLeft;
-    public static double sOut = -1.0;
-    public static double sIn = 1.0;
+    public static double sOut = 1.0;
+    public static double sIn = -1.0;
     public static double sStop = 0.0;
 
     public void initDefaultCommand() {

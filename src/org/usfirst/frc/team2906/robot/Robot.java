@@ -17,6 +17,7 @@ import org.usfirst.frc.team2906.robot.commands.RaiseArm;
 import org.usfirst.frc.team2906.robot.subsystems.Arm;
 import org.usfirst.frc.team2906.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2906.robot.subsystems.Piston;
+import org.usfirst.frc.team2906.robot.subsystems.Vision;
 import org.usfirst.frc.team2906.robot.subsystems.Wheels;
 
 public class Robot extends IterativeRobot {
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Wheels wheels;
 	public static Piston piston;
+	public static Vision vision;
 	public static OI oi;
 
 	Command AutoNone;
@@ -38,18 +40,20 @@ public class Robot extends IterativeRobot {
 	String[] autoList = {autoNone};
 	
 	public void robotInit() {
+		RobotMap.init();
 		
 		arm = new Arm("StrongArm");
 		driveTrain = new DriveTrain();
 		wheels = new Wheels();
 		piston = new Piston();
+		vision = new Vision();
 		oi = new OI(); //ALWAYS GOES LAST!!! get a null error if it doesn't
 		
-		/*NetworkTable table = NetworkTable.getTable("SmartDashboard");
+		NetworkTable table = NetworkTable.getTable("SmartDashboard");
 		table.putStringArray("Auto List", autoList);
 		
 		chooser = new SendableChooser();
-		chooser.addDefault("No Auto", new AutoNone());*/
+		chooser.addDefault("No Auto", new AutoNone());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		
 		SmartDashboard.putData("Auto mode", chooser);
@@ -83,6 +87,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	public void teleopPeriodic() {

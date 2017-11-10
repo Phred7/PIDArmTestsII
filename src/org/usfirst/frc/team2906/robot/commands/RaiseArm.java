@@ -9,6 +9,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class RaiseArm extends CommandGroup {
 
     public RaiseArm() {
-        addParallel(new SetArmSetpoint(185.0));
+        addParallel(new SetArmSetpoint(175.0));
     }
 }

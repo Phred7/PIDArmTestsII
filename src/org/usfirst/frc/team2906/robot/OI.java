@@ -7,6 +7,8 @@ import org.usfirst.frc.team2906.robot.commands.Fire;
 import org.usfirst.frc.team2906.robot.commands.LowerArm;
 import org.usfirst.frc.team2906.robot.commands.RaiseArm;
 import org.usfirst.frc.team2906.robot.commands.Reload;
+import org.usfirst.frc.team2906.robot.commands.VisionOff;
+import org.usfirst.frc.team2906.robot.commands.VisionOn;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -34,9 +36,15 @@ public class OI {
 		// Joystick 1 Buttons
 		trigr1 = new JoystickButton(joystick1, 1);
 		trigr1.whenPressed(new RaiseArm());
+		
+		trigr1 = new JoystickButton(joystick1, 1);
+		trigr1.whenPressed(new VisionOn());
 
 		thumb = new JoystickButton(joystick1, 2);
 		thumb.whenPressed(new LowerArm());
+		
+		thumb = new JoystickButton(joystick1, 2);
+		thumb.whenPressed(new VisionOff());
 
 		j1b5 = new JoystickButton(joystick1, 5);
 		j1b5.whileHeld(new BallIn());
@@ -47,8 +55,8 @@ public class OI {
 		j1b6.whenReleased(new BallStop());
 		// Joystick 2 Buttons
 		trigr2 = new JoystickButton(joystick2, 1);
-		trigr2.whileHeld(new Fire());
-		trigr2.whenReleased(new Reload());
+		trigr2.whileHeld(new Reload());
+		trigr2.whenReleased(new Fire());
 
 		j2b3 = new JoystickButton(joystick2, 3);
 		j2b3.whileHeld(new BallIn());
@@ -60,9 +68,15 @@ public class OI {
 
 		squr11 = new JoystickButton(joystick2, 11);
 		squr11.whenPressed(new RaiseArm());
+		
+		squr11 = new JoystickButton(joystick2, 11);
+		squr11.whenPressed(new VisionOn());
 
 		squr12 = new JoystickButton(joystick2, 12);
 		squr12.whenPressed(new LowerArm());
+		
+		squr12 = new JoystickButton(joystick2, 12);
+		squr12.whenPressed(new VisionOff());
 
 	}
 

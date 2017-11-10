@@ -1,10 +1,15 @@
 package org.usfirst.frc.team2906.robot;
 
+import edu.wpi.first.wpilibj.ADXL345_SPI;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -22,10 +27,13 @@ public class RobotMap {
 	public static SpeedController driveLeft;
 	public static SpeedController wRight;
 	public static SpeedController wLeft;
+	public static Relay leds;
+	public static ADXRS450_Gyro gyro;
 	public static double sensitivity = 0.15;
 	public static double calculatedDriveGearRatio = ((50/14)*(48/16));
 	public static double outputDriveGearRatio = (10.71/1);
 	private static final boolean Inverted = true;
+	private static final int kGyroPort = 0;
 	
 	
 	// If you are using multiple modules, make sure to define both the port
@@ -46,6 +54,8 @@ public class RobotMap {
     	wLeft = new Talon(black);
     	wRight.setInverted(Inverted);
     	
+    	leds = new Relay(0);
+    	
     	ballFire = new DoubleSolenoid(1, 2);
     	
     	drivePnue = new RobotDrive(driveLeft, driveRight);
@@ -56,6 +66,8 @@ public class RobotMap {
         drivePnue.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
         
         pnueComp  = new Compressor(0);
+        
+        gyro = new ADXRS450_Gyro();
     	
     	 SmartDashboard.putNumber("calculatedDriveGearRatio", calculatedDriveGearRatio);
          SmartDashboard.putNumber("DriveGearRatio", outputDriveGearRatio);
